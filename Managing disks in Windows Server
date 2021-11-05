@@ -1,0 +1,38 @@
+어떤 스토리지 기술을 도입할 건지 먼저 파악해야 함
+
+스토리지에 어떤 디스크를 부착할건지, 어떤 파일 시스템을 이용할 것인지
+
+파티션 포맷 : MBR(up to 2TB), GPT(그 이상)
+  디스크 크기가 2TB이하라면 MBR을 사용하는게 나음, MBR이 GPT보다 더 적은 디스크 용량 차지
+  
+디스크 타입 설정 : basic vs dynamic
+
+기본 설정은 basic이고 데이터 손실 없이 dynamic 디스크로 바꿀 수 있음. 그러나 dynamic 디스크에서 basic으로 바꿀 때는 disk에 있던 데이터가 사라짐
+
+basic에서 dynamic으로 바꾼다고 퍼포먼스 향상이 이루어지지 않기 때문에 대부분 basic을 씀. 다만 dynamic에서만 제공하는 설정값을 필요로 하는 경우 dyanmic 사용
+
+dynamic disk는 fault tolerant한 디스크를 설정할 때 사용
+  dynamic 디스크를 설정할 때 파티션 보다 볼륨을 설정함(볼륨이란 하나 이상의 디스크의 가용 공간으로부터 만들어낸 스토리지 유닛)
+  볼륨은 파일시스템과 함께 사용하거나 마운트 포인트로 설정할 수 있음
+  
+디스크 타입에 상관 없이 서버의 하드디스크 중 하나에 '시스템 볼륨'과 '부트 볼륨' 설정이 필요함
+  시스템 볼륨 : 하드웨어 특정한 파일을 가지고 있음, 윈도우 OS가 로딩해야 함 (Bootmgr, BOOTSECT.bak), 부트 볼륨과 똑같을 수 있음
+  부트 볼륨 : OS파일을 가지고 있고, 시스템 볼륨과 똑같을 수 있음
+  
+파일시스템
+  FAT file allocation table
+    파일 시스템중 가장 간단함
+    손상 입을 경우를 대비하여 FAT 파일시스템 두 벌이 존재함
+    file allocation table과 루트 디렉토리는 무조건 지정된 위치에 저장돼야 하는데, 그래야 system's boot files can be located
+    FAT file system을 가진 디스크는 클러스터 내에 존재하고, 볼륨의 사이즈가 클러스터 크기를 결정함
+    보안이 되지 않기 때문에 윈도우 서버용으로 FAT이나 FAT32를 붙이면 안됨
+  NTFS
+    AD DS, VSs, DFS, FRS 같은 role을 하는 윈도우 서버에 무조건 사용해야 함
+    FAT보다 더 향상된 security 제공
+    ACL 제공
+  ReFS
+    NTFS보다 향상된 버전
+    Windows Server 2016에서 매우 큰 볼륨과 파일 쉐어에 사용할 수 있
+    부트 볼륨에 사용 X
+    
+  
