@@ -34,5 +34,11 @@ dynamic disk는 fault tolerant한 디스크를 설정할 때 사용
     NTFS보다 향상된 버전
     Windows Server 2016에서 매우 큰 볼륨과 파일 쉐어에 사용할 수 있
     부트 볼륨에 사용 X
+  섹터사이즈
+    디스크에 한 번에 쓸 수 있는 unit size
+    
+  ?? ntfs disk 생성 성공, refs disk 생성 성공, ntfs -> refs로 바꾸면 raw라고 뜨면서 자꾸 오류남
+  
+  
     
   
