@@ -47,3 +47,6 @@ dynamic disk는 fault tolerant한 디스크를 설정할 때 사용
   Mirrored volume : RAID-1,  데이터 한 벌을 똑같이 다른 디스크에 복제해 두는 것. Fault-tolerant함. extended 안됨.
   RAID-5 : 적어도 3개의 디스크에 걸쳐 데이터 스트라이핑이 돼있음. 패러티가 있기 때문에 데이터 손실이 발생해도 복구할 수 있음. 미러링, Extend 안됨.
   
+디스크 관리 옵션
+  Server manager, Disk management, Diskpart.exe, Windows PowerShell
+  
