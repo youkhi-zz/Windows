@@ -39,6 +39,11 @@ dynamic disk는 fault tolerant한 디스크를 설정할 때 사용
     
   ?? ntfs disk 생성 성공, refs disk 생성 성공, ntfs -> refs로 바꾸면 raw라고 뜨면서 자꾸 오류남
   
-  
-    
+디스크 볼륨
+  Simple volume : 한 디스크의 빈 공간을 사용하는 디스크. 하나의 리전 혹은 여러 리전에 걸쳐 존재할 수 있음. 하나의 디스크가 아닌 여러 디스크에 걸쳐 존재할 경우 spanned volume이 됨
+  ?? 디스크에 리전?
+  Spanned volume : 링크된 디스크들간에 빈 공간을 사용하는 디스크. 최대 32디스크에 걸쳐 존재할 수 있고, 미러링은 할 수 없으며 fault-tolerant하지 않음. 만약 한 디스크를 소실할 경우 전체 볼륨을 잃게 됨
+  Striped volume : RAID-0, 두 개 이상의 디스크에 걸쳐 존재하는 볼륨, 데이터는 디스크간에 고루 퍼져서 저장됨. 미러링 안되고, extended 안되고, fault-tolerant하지 않음. 하나의 디스크를 잃게 될 경우 전체 볼륨을 잃게 됨
+  Mirrored volume : RAID-1,  데이터 한 벌을 똑같이 다른 디스크에 복제해 두는 것. Fault-tolerant함. extended 안됨.
+  RAID-5 : 적어도 3개의 디스크에 걸쳐 데이터 스트라이핑이 돼있음. 패러티가 있기 때문에 데이터 손실이 발생해도 복구할 수 있음. 미러링, Extend 안됨.
   
